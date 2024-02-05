@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4004:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm","test"]
+
+#context: .
+#dockerfile: Dockerfile.dev
+
+# the above two lines the first specifies the path where we are getting the whole codes for our app and dockerfile points to our dockerdile
+#we did this because we changed the name of the Dockerfile.dev
